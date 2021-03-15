@@ -6,13 +6,13 @@ A new take on the popular manhunt/assassin minecraft game mode.
 
 ### Command Usage
 
-* `/manhunt:assassin <player>` - Add a player to the assassins group
-* `/manhunt:speedrunner <>player` - Add a player to the speedrunner group
-* `/manhunt:groups` - Display a list of players in each group
-* `/manhunt:randomize-spawn` - Randomizes the spawn point
-* `/manhunt:starting-distance` - Sets the starting distance between the assassin and speedrunner
-* `/manhunt:countdown-time` - Sets the length of the countdown timer when starting
-* `/manhunt:start` - Starts game, begins the countdown timer
+* `/UltimateManHunt:assassin <player>` - Add a player to the assassins group
+* `/UltimateManHunt:speedrunner <>player` - Add a player to the speedrunner group
+* `/UltimateManHunt:groups` - Display a list of players in each group
+* `/UltimateManHunt:randomize-spawn` - Randomizes the spawn point
+* `/UltimateManHunt:starting-distance` - Sets the starting distance between the assassin and speedrunner
+* `/UltimateManHunt:countdown-time` - Sets the length of the countdown timer when starting
+* `/UltimateManHunt:start` - Starts game, begins the countdown timer
 
 ### Project Directory Structure
 

@@ -1,6 +1,13 @@
 package com.icepaka89.UltimateManHunt;
 
+import com.icepaka89.UltimateManHunt.Commands.AssassinCommandExecutor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Ultimate Man Hunt minecraft bukkit plugin. Little side note: To download javadoc documentation for the
@@ -19,8 +26,8 @@ public final class UltimateManHunt extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("UltimateManHunt plugin enabled!");
+        getCommand("assassin").setExecutor(new AssassinCommandExecutor(this));
     }
-
 
     /**
      * Run when the plugin is disabled.
@@ -28,5 +35,10 @@ public final class UltimateManHunt extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("UltimateManHunt plugin disabled!");
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        return false;
     }
 }
