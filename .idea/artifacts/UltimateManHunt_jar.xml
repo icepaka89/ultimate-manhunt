@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="UltimateManHunt.jar">
+    <output-path>$PROJECT_DIR$/test-server/plugins</output-path>
+    <root id="root">
+      <element id="archive" name="UltimateManHunt.jar">
+        <element id="module-output" name="UltimateManHunt" />
+      </element>
+    </root>
+  </artifact>
+</component>
