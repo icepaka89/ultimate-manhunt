@@ -6,6 +6,4 @@ commands:
   assassin:
     description: Add a player to the assassins group
     usage: /<command> [player]
-    permission: UltimateManHunt.basic
-    permission-message: You don't have <permission>
 

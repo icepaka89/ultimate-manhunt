@@ -14,28 +14,52 @@ import org.bukkit.entity.Player;
  */
 public class AssassinCommandExecutor implements CommandExecutor {
 
+    /**
+     * Handle to the <b>UltimateManHunt</b> plugin main class.
+     */
     private final UltimateManHunt plugin;
 
+    /**
+     *
+     * @param plugin Handle to the UltimateManHunt plugin
+     */
     public AssassinCommandExecutor(UltimateManHunt plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * Invoked by the plugin when the /assassin command is run. Adds the player name specified by the first argument
+     * to the assassins group (if that player is online).
+     * @param commandSender
+     * @param command
+     * @param label
+     * @param args Command line args: [0] : player name
+     * @return TRUE if command ran successfully, FALSE otherwise.
+     */
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
-        if(command.getName().equalsIgnoreCase("assassin")) {
-            if(args.length < 1) return false;
+        // Returns false (and have bukkit print command usage) if the wrong number of args is specified
+        if(args.length < 1) return false;
 
-            String playerName = args[0];
-            Player player = plugin.getServer().getPlayer(playerName);
+        // Try to get the specified player name from the server.
+        String playerName = args[0];
+        Player player = plugin.getServer().getPlayer(playerName);
 
-            if(player == null) return false;
-
+        // If the player name isn't found, then the player will be null. Print to the user that the player wasn't found.
+        if(player == null) {
             plugin.getLogger().info(
-                    String.format("%s has been added to assassins", playerName)
+                String.format("Player %s was not found!", playerName)
             );
-            return true;
         }
 
-        return false;
+        // TODO: Add facilities for storing player groups!
+
+        // Print what user was just added to the assassins group.
+        plugin.getLogger().info(
+                String.format("%s has been added to assassins", playerName)
+        );
+
+        // Return true to indicate the command ran successfully.
+        return true;
     }
 }

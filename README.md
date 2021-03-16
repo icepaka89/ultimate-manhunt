@@ -7,10 +7,11 @@ A new take on the popular manhunt/assassin minecraft game mode.
 ### Command Usage
 
 * `/UltimateManHunt:assassin <player>` - Add a player to the assassins group
-* `/UltimateManHunt:speedrunner <>player` - Add a player to the speedrunner group
+* `/UltimateManHunt:speedrunner <player>` - Add a player to the speedrunner group
 * `/UltimateManHunt:groups` - Display a list of players in each group
 * `/UltimateManHunt:randomize-spawn` - Randomizes the spawn point
 * `/UltimateManHunt:starting-distance` - Sets the starting distance between the assassin and speedrunner
+* `/UltimateManHunt:debuff-assassin <percentage>` - Debuffs assassins by reducing their damage by the given percentage
 * `/UltimateManHunt:countdown-time` - Sets the length of the countdown timer when starting
 * `/UltimateManHunt:start` - Starts game, begins the countdown timer
 
