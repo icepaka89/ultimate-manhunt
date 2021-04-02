@@ -1,5 +1,6 @@
 package com.icepaka89.UltimateManHunt.Commands;
 
+import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,16 +16,23 @@ import org.bukkit.entity.Player;
 public class AssassinCommandExecutor implements CommandExecutor {
 
     /**
-     * Handle to the <b>UltimateManHunt</b> plugin main class.
+     * Reference to the <b>UltimateManHunt</b> plugin main class.
      */
     private final UltimateManHunt plugin;
 
     /**
-     *
+     * Reference to the <b>UmhManager</b> instance which manages the plugin's core logic.
+     */
+    private final UmhManager manager;
+
+    /**
+     * Implementation of the /assassin command, adds the player name specified in the first argument to
+     * the assassins group.
      * @param plugin Handle to the UltimateManHunt plugin
      */
-    public AssassinCommandExecutor(UltimateManHunt plugin) {
+    public AssassinCommandExecutor(UltimateManHunt plugin, UmhManager umhManager) {
         this.plugin = plugin;
+        this.manager = umhManager;
     }
 
     /**
@@ -52,7 +60,8 @@ public class AssassinCommandExecutor implements CommandExecutor {
             );
         }
 
-        // TODO: Add facilities for storing player groups!
+        // Add the player to the assassins group
+        manager.addAssassin(player);
 
         // Print what user was just added to the assassins group.
         plugin.getLogger().info(

@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Manages all core logic for the ultimate manhunt plugin. This includes managing lists of all
@@ -80,5 +81,21 @@ public class UmhManager {
      */
     public void setStartingDistance(double startingDistance) {
         this.startingDistance = startingDistance;
+    }
+
+    /**
+     * Gets a list of all players in the assassins group
+     * @return
+     */
+    public List<Player> getAssassins() {
+        return (List<Player>) assassins.values();
+    }
+
+    /**
+     * Gets a list of all players in the speedrunners group
+     * @return
+     */
+    public List<Player> getSpeedrunners() {
+        return (List<Player>) speedRunners.values();
     }
 }

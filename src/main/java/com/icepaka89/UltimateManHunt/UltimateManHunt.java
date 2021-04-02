@@ -1,6 +1,8 @@
 package com.icepaka89.UltimateManHunt;
 
 import com.icepaka89.UltimateManHunt.Commands.AssassinCommandExecutor;
+import com.icepaka89.UltimateManHunt.Core.UmhManager;
+import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,7 +13,7 @@ import java.util.Collection;
 
 /**
  * Ultimate Man Hunt minecraft bukkit plugin. Little side note: To download javadoc documentation for the
- * bukkit apis, right click on the project, then go to maven->Download Documentation, and then your'e
+ * bukkit apis, right click on the project, then go to maven->Download Documentation, and then you're
  * good to go.
  *
  * @author icepaka89
@@ -25,8 +27,18 @@ public final class UltimateManHunt extends JavaPlugin {
      */
     @Override
     public void onEnable() {
+        UmhManager umhManager = new UmhManager(this);
+
         getLogger().info("UltimateManHunt plugin enabled!");
-        getCommand("assassin").setExecutor(new AssassinCommandExecutor(this));
+        getCommand("assassin").setExecutor(
+            new AssassinCommandExecutor(this, umhManager)
+        );
+        getServer().getScheduler().scheduleSyncRepeatingTask(
+            this,
+            new CompassUpdaterTask(this, umhManager),
+            0,
+            1
+        );
     }
 
     /**
