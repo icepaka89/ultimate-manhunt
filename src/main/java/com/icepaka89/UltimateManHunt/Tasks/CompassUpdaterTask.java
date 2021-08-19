@@ -63,11 +63,11 @@ public class CompassUpdaterTask implements Runnable {
         Location location = assassin.getLocation();
 
         Player closestSpeedRunner = manager.getSpeedrunners().stream()
+            // Only consider players in the same world as the assassin, and don't consider the assassin
             .filter(speedRunner ->
-                    !speedRunner.equals(assassin)
-                            && speedRunner.getWorld().equals(assassin.getWorld()
-                    )
+                    !speedRunner.equals(assassin) && speedRunner.getWorld().equals(assassin.getWorld())
             )
+            // Get the player that's closes to the speedrunner's current location
             .min(
                 Comparator.comparing(speedRunner -> speedRunner.getLocation().distance(location))
             )
