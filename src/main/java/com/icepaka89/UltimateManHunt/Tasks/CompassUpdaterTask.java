@@ -6,6 +6,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -61,7 +62,6 @@ public class CompassUpdaterTask implements Runnable {
      */
     private Player getNearestSpeedRunner(Player assassin) {
         Location location = assassin.getLocation();
-
         Player closestSpeedRunner = manager.getSpeedrunners().stream()
             // Only consider players in the same world as the assassin, and don't consider the assassin
             .filter(speedRunner ->

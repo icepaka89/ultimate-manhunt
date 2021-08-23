@@ -6,4 +6,7 @@ commands:
   assassin:
     description: Add a player to the assassins group
     usage: /<command> [player]
+  randomize-spawn:
+    description: Randomize the spawn location for all players
+    useage: /<command>
 

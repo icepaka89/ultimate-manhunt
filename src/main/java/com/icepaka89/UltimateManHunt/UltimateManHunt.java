@@ -1,6 +1,7 @@
 package com.icepaka89.UltimateManHunt;
 
 import com.icepaka89.UltimateManHunt.Commands.AssassinCommandExecutor;
+import com.icepaka89.UltimateManHunt.Commands.RandomizeSpawnCommandExecutor;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
@@ -32,6 +33,9 @@ public final class UltimateManHunt extends JavaPlugin {
         getLogger().info("UltimateManHunt plugin enabled!");
         getCommand("assassin").setExecutor(
             new AssassinCommandExecutor(this, umhManager)
+        );
+        getCommand("randomize-spawn").setExecutor(
+            new RandomizeSpawnCommandExecutor(this)
         );
         getServer().getScheduler().scheduleSyncRepeatingTask(
             this,

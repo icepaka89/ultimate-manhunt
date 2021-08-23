@@ -2,3 +2,5 @@ test-server/world/*
 test-server/world_nether/*
 test-server/world_the_end/*
 test-server/logs/*
+test-server
+target

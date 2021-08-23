@@ -4,6 +4,7 @@ import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +47,9 @@ public class UmhManager {
      */
     public UmhManager(UltimateManHunt plugin) {
         this.plugin = plugin;
+
+        this.assassins = new HashMap<>();
+        this.speedRunners = new HashMap<>();
     }
 
     /**
@@ -87,15 +91,15 @@ public class UmhManager {
      * Gets a list of all players in the assassins group
      * @return
      */
-    public List<Player> getAssassins() {
-        return (List<Player>) assassins.values();
+    public Collection<Player> getAssassins() {
+        return assassins.values();
     }
 
     /**
      * Gets a list of all players in the speedrunners group
      * @return
      */
-    public List<Player> getSpeedrunners() {
-        return (List<Player>) speedRunners.values();
+    public Collection<Player> getSpeedrunners() {
+        return speedRunners.values();
     }
 }
