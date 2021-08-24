@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Manages all core logic for the ultimate manhunt plugin. This includes managing lists of all
@@ -101,5 +103,14 @@ public class UmhManager {
      */
     public Collection<Player> getSpeedrunners() {
         return speedRunners.values();
+    }
+
+    /**
+     * Gets a list of all players, from both assassins and speedrunner groups combined
+     * @return
+     */
+    public Collection<Player> getAllPlayers() {
+        var list = Stream.concat(assassins.values().stream(), speedRunners.values().stream());
+        return list.collect(Collectors.toList());
     }
 }

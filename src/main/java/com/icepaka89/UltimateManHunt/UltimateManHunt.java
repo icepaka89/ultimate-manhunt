@@ -35,7 +35,7 @@ public final class UltimateManHunt extends JavaPlugin {
             new AssassinCommandExecutor(this, umhManager)
         );
         getCommand("randomize-spawn").setExecutor(
-            new RandomizeSpawnCommandExecutor(this)
+            new RandomizeSpawnCommandExecutor(this, umhManager)
         );
         getServer().getScheduler().scheduleSyncRepeatingTask(
             this,
