@@ -44,7 +44,7 @@ public class CompassUpdaterTask implements Runnable {
 
     @Override
     public void run() {
-        // Go through each player in the speed runners group, and set each assassin's compass target
+        // Go through each player in the assassins group, and set each assassin's compass target
         // to the location of the closest speed runner.
         for(Player assassin : manager.getAssassins()) {
             Player target = getNearestSpeedRunner(assassin);

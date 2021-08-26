@@ -1,12 +1,18 @@
 name: UltimateManHunt
 main: com.icepaka89.UltimateManHunt.UltimateManHunt
-version: 0.0.1
+version: 1.0.0
 author: icepaka89
 commands:
   assassin:
     description: Add a player to the assassins group
     usage: /<command> [player]
+  speedrunner:
+    description: Add a player to the speedrunners group
+    usage: /<command> [player]
   randomize-spawn:
     description: Randomize the spawn location for all players
-    useage: /<command>
+    usage: /<command>
+  groups:
+    description: List players in both groups
+    usage: /<command>
 

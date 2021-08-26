@@ -17,7 +17,7 @@ import org.bukkit.command.CommandSender;
  */
 public class RandomizeSpawnCommandExecutor implements CommandExecutor {
     public static int MAX_RANDOM_HOPS = 150;
-    public static int SPAWN_HOP_RADIUS = 5000;
+    public static int SPAWN_HOP_RADIUS = 100000;
 
     /**
      * Reference to the <b>UltimateManHunt</b> plugin main class.
@@ -43,6 +43,8 @@ public class RandomizeSpawnCommandExecutor implements CommandExecutor {
         boolean bSpawnSetSuccessfully = world.setSpawnLocation(
                 getRandomSpawnLocation(world)
         );
+
+
 
         // If spawn was set successfully, then notify players, set their bed spawn points to the new world spawn,
         // and teleport everyone to the new spawn.

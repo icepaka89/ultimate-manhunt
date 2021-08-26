@@ -10,12 +10,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Implementation of the /assassin command, adds the player name specified in the first argument to
- * the assassins group.
+ * Implementation of the /speedrunner command, adds the player name specified in the first argument to
+ * the speedrunners group.
  *
  * @author icepaka89
  */
-public class AssassinCommandExecutor implements CommandExecutor {
+public class SpeedrunnerCommandExecutor implements CommandExecutor {
 
     /**
      * Reference to the <b>UltimateManHunt</b> plugin main class.
@@ -31,13 +31,13 @@ public class AssassinCommandExecutor implements CommandExecutor {
      * @param plugin The UltimateManHunt main plugin class
      * @param manager Manager class, handles all plugin business logic and stores player groups
      */
-    public AssassinCommandExecutor(UltimateManHunt plugin, UmhManager manager) {
+    public SpeedrunnerCommandExecutor(UltimateManHunt plugin, UmhManager manager) {
         this.plugin = plugin;
         this.manager = manager;
     }
 
     /**
-     * Invoked by the plugin when the /assassin command is run. Adds the player name specified by the first argument
+     * Invoked by the plugin when the /speedrunner command is run. Adds the player name specified by the first argument
      * to the assassins group (if that player is online).
      * @param commandSender
      * @param command
@@ -57,23 +57,19 @@ public class AssassinCommandExecutor implements CommandExecutor {
         // If the player name isn't found, then the player will be null. Print to the user that the player wasn't found.
         if(player == null) {
             plugin.getLogger().info(
-                String.format("Player %s was not found!", playerName)
+                    String.format("Player %s was not found!", playerName)
             );
         }
 
         // Add the player to the assassins group
-        manager.addAssassin(player);
+        manager.addSpeedRunner(player);
 
-        // Print what user was just added to the assassins group.
+        // Print what user was just added to the speedrunners group.
         plugin.getLogger().info(
-            String.format("%s has been added to assassins", playerName)
+                String.format("%s has been added to speedrunners", playerName)
         );
 
-        Bukkit.broadcastMessage(ChatColor.GREEN + String.format("%s has been added to assassins", playerName));
-
-//        // Notify issuer of command that the player was added
-//        Player issuer = (Player) commandSender;
-//        issuer.sendMessage(String.format("%s has been added to assassins", playerName));
+        Bukkit.broadcastMessage(ChatColor.GREEN + String.format("%s has been added to speedrunners", playerName));
 
         // Return true to indicate the command ran successfully.
         return true;
