@@ -39,9 +39,9 @@ public class UmhManager {
     private double assassinDeBuff;
 
     /**
-     * Starting distance between the assassin and speed runner groups when the game is started.
+     * Starting distance between the assassin and speed runner groups when the game is started, in blocks
      */
-    private double startingDistance;
+    private int startingDistance;
 
     /**
      * Creates a new Ultimate Manhunt plugin manager
@@ -52,6 +52,8 @@ public class UmhManager {
 
         this.assassins = new HashMap<>();
         this.speedRunners = new HashMap<>();
+
+        this.startingDistance = 20;
     }
 
     /**
@@ -82,12 +84,18 @@ public class UmhManager {
     }
 
     /**
-     * Sets the distance that the assassins group starts from the speed runners group when the game starts.
+     * Sets the distance (in blocks) that the assassins group starts from the speed runners group when the game starts.
      * @param startingDistance
      */
-    public void setStartingDistance(double startingDistance) {
+    public void setStartingDistance(int startingDistance) {
         this.startingDistance = startingDistance;
     }
+
+    /**
+     * Gets the distance (in blocks) that the assassins group starts from the speed runners group when the game starts.
+     * @return
+     */
+    public int getStartingDistance() { return startingDistance; }
 
     /**
      * Gets a list of all players in the assassins group

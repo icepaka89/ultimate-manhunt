@@ -1,10 +1,10 @@
 # Ultimate Manhunt Plugin
-**This project is still a work in progress**
+*Version 1.0*
 ### Overview
 
-A new take on the popular manhunt/assassin minecraft game mode.
+The popular manhunt/assassin minecraft game mode, with some extra features!
 
-### Command Usage
+### Commands
 
 * `/assassin <player>` - Add a player to the assassins group
 * `/speedrunner <player>` - Add a player to the speedrunner group

@@ -1,18 +1,11 @@
 package com.icepaka89.UltimateManHunt;
 
-import com.icepaka89.UltimateManHunt.Commands.AssassinCommandExecutor;
-import com.icepaka89.UltimateManHunt.Commands.GroupsCommandExecutor;
-import com.icepaka89.UltimateManHunt.Commands.RandomizeSpawnCommandExecutor;
-import com.icepaka89.UltimateManHunt.Commands.SpeedrunnerCommandExecutor;
+import com.icepaka89.UltimateManHunt.Commands.*;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Ultimate Man Hunt minecraft bukkit plugin. Little side note: To download javadoc documentation for the
@@ -42,8 +35,14 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("randomize-spawn").setExecutor(
             new RandomizeSpawnCommandExecutor(this, umhManager)
         );
-        getCommand("groups").setExecutor(
-            new GroupsCommandExecutor(this, umhManager)
+        getCommand("manhunt-groups").setExecutor(
+            new ManhuntGroupsCommandExecutor(this, umhManager)
+        );
+        getCommand("starting-distance").setExecutor(
+            new StartingDistanceCommandExecutor(this, umhManager)
+        );
+        getCommand("start-manhunt").setExecutor(
+            new StartManhuntCommandExecutor(this, umhManager)
         );
         getServer().getScheduler().scheduleSyncRepeatingTask(
             this,

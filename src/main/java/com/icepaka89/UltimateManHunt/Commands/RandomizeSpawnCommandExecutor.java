@@ -2,6 +2,7 @@ package com.icepaka89.UltimateManHunt.Commands;
 
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
@@ -60,7 +61,7 @@ public class RandomizeSpawnCommandExecutor implements CommandExecutor {
             // Set bed spawns for all players and send a message with the new spawn coordinates.
             plugin.getLogger().info(message);
             manager.getAllPlayers().forEach(player -> {
-                player.sendMessage(message);
+                player.sendMessage(ChatColor.AQUA +message);
                 player.teleport(world.getSpawnLocation());
                 player.setBedSpawnLocation(world.getSpawnLocation());
             });

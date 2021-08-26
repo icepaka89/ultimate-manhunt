@@ -3,6 +3,7 @@ package com.icepaka89.UltimateManHunt.Commands;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
  * Implementation of the /groups command, lists all players in the speedrunner group and all players in the assassins
  * group for everyone to see.
  */
-public class GroupsCommandExecutor implements CommandExecutor {
+public class ManhuntGroupsCommandExecutor implements CommandExecutor {
 
     /**
      * Reference to the <b>UltimateManHunt</b> plugin main class.
@@ -25,7 +26,7 @@ public class GroupsCommandExecutor implements CommandExecutor {
      */
     private final UmhManager manager;
 
-    public GroupsCommandExecutor(UltimateManHunt plugin, UmhManager manager) {
+    public ManhuntGroupsCommandExecutor(UltimateManHunt plugin, UmhManager manager) {
         this.plugin = plugin;
         this.manager = manager;
     }
@@ -41,8 +42,8 @@ public class GroupsCommandExecutor implements CommandExecutor {
                 .map(p -> p.getName())
                 .collect(Collectors.toList());
 
-        Bukkit.broadcastMessage("Speedrunners: " + String.join(", ", speedRunners));
-        Bukkit.broadcastMessage("Assassins: " + String.join(", ", assassins));
+        Bukkit.broadcastMessage(ChatColor.AQUA + "Speedrunners: " + String.join(", ", speedRunners));
+        Bukkit.broadcastMessage(ChatColor.AQUA + "Assassins: " + String.join(", ", assassins));
 
         return true;
     }

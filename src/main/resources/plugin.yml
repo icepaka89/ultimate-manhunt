@@ -12,7 +12,13 @@ commands:
   randomize-spawn:
     description: Randomize the spawn location for all players
     usage: /<command>
-  groups:
+  manhunt-groups:
     description: List players in both groups
+    usage: /<command>
+  starting-distance:
+    description: Set starting distance (in blocks) assassins will start from speed runners
+    usage: /<command> [distance]
+  start-manhunt:
+    description: Starts the manhunt! Teleports all players to starting positions
     usage: /<command>
 

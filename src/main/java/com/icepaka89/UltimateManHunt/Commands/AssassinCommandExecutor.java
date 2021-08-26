@@ -69,7 +69,7 @@ public class AssassinCommandExecutor implements CommandExecutor {
             String.format("%s has been added to assassins", playerName)
         );
 
-        Bukkit.broadcastMessage(ChatColor.GREEN + String.format("%s has been added to assassins", playerName));
+        Bukkit.broadcastMessage(ChatColor.AQUA + String.format("%s has been added to assassins", playerName));
 
 //        // Notify issuer of command that the player was added
 //        Player issuer = (Player) commandSender;

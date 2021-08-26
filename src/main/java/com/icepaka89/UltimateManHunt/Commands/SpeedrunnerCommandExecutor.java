@@ -69,7 +69,7 @@ public class SpeedrunnerCommandExecutor implements CommandExecutor {
                 String.format("%s has been added to speedrunners", playerName)
         );
 
-        Bukkit.broadcastMessage(ChatColor.GREEN + String.format("%s has been added to speedrunners", playerName));
+        Bukkit.broadcastMessage(ChatColor.AQUA + String.format("%s has been added to speedrunners", playerName));
 
         // Return true to indicate the command ran successfully.
         return true;
