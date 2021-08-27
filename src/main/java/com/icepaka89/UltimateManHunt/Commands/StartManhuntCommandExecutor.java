@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Implementation of the /start-manhunt command. Teleports all players to their starting positions! Currently this
@@ -62,11 +63,21 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
         });
 
         manager.getAssassins().forEach(p -> {
-
             p.teleport(assassinStartLocation);
         });
 
-        Bukkit.broadcastMessage(ChatColor.AQUA + "Manhunt session started! Good luck!");
+        Bukkit.broadcastMessage(ChatColor.AQUA + String.format(
+                "Speedrunners start! Assassin must wait for %d seconds!", manager.getCountdownTime()
+        ));
+
+        var countdownTimerTask = new BukkitRunnable() {
+            @Override
+            public void run() {
+                Bukkit.broadcastMessage(ChatColor.AQUA + "Assassins start! Good luck!");
+            }
+        };
+
+        countdownTimerTask.runTaskLater(plugin, manager.getCountdownTime() * 20L);
 
         return true;
     }

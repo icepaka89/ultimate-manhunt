@@ -21,4 +21,10 @@ commands:
   start-manhunt:
     description: Starts the manhunt! Teleports all players to starting positions
     usage: /<command>
+  countdown-time:
+    description: Sets the time for the countdown timer when the game starts
+    usage: /<command> [time]
+  debuff-assassin:
+    description: Sets the percentage to debuff all assassin attacks (between 0 and 1)
+    usage: /<command> [debuff]
 

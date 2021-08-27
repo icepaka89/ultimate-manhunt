@@ -41,7 +41,13 @@ public class UmhManager {
     /**
      * Starting distance between the assassin and speed runner groups when the game is started, in blocks
      */
-    private int startingDistance;
+    private int startingDistance = 20;
+
+    /**
+     * Time (in sec) the countdown timer should wait for when the game starts, before the assassin should start
+     * going after the speedrunner
+     */
+    private int countdownTime = 60;
 
     /**
      * Creates a new Ultimate Manhunt plugin manager
@@ -52,8 +58,6 @@ public class UmhManager {
 
         this.assassins = new HashMap<>();
         this.speedRunners = new HashMap<>();
-
-        this.startingDistance = 20;
     }
 
     /**
@@ -89,6 +93,24 @@ public class UmhManager {
      */
     public void setStartingDistance(int startingDistance) {
         this.startingDistance = startingDistance;
+    }
+
+    /**
+     * Sets the time (in sec) the countdown timer should wait for when the game starts, before the assassin should
+     * start going after the speedrunner
+     * @return
+     */
+    public void setCountdownTime(int countdownTime) {
+        this.countdownTime = countdownTime;
+    }
+
+    /**
+     * Gets the time (in sec) the countdown timer should wait for when the game starts, before the assassin should
+     * start going after the speedrunner
+     * @return
+     */
+    public int getCountdownTime() {
+        return countdownTime;
     }
 
     /**

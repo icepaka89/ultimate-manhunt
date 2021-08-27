@@ -27,28 +27,34 @@ public final class UltimateManHunt extends JavaPlugin {
 
         getLogger().info("UltimateManHunt plugin enabled!");
         getCommand("assassin").setExecutor(
-            new AssassinCommandExecutor(this, umhManager)
+                new AssassinCommandExecutor(this, umhManager)
         );
         getCommand("speedrunner").setExecutor(
-            new SpeedrunnerCommandExecutor(this, umhManager)
+                new SpeedrunnerCommandExecutor(this, umhManager)
         );
         getCommand("randomize-spawn").setExecutor(
-            new RandomizeSpawnCommandExecutor(this, umhManager)
+                new RandomizeSpawnCommandExecutor(this, umhManager)
         );
         getCommand("manhunt-groups").setExecutor(
-            new ManhuntGroupsCommandExecutor(this, umhManager)
+                new ManhuntGroupsCommandExecutor(this, umhManager)
         );
         getCommand("starting-distance").setExecutor(
-            new StartingDistanceCommandExecutor(this, umhManager)
+                new StartingDistanceCommandExecutor(this, umhManager)
         );
         getCommand("start-manhunt").setExecutor(
-            new StartManhuntCommandExecutor(this, umhManager)
+                new StartManhuntCommandExecutor(this, umhManager)
+        );
+        getCommand("countdown-time").setExecutor(
+                new CountdownTimeCommandExecutor(this, umhManager)
+        );
+        getCommand("debuff-assassin").setExecutor(
+                new DebuffAssassinCommandExecutor(this, umhManager)
         );
         getServer().getScheduler().scheduleSyncRepeatingTask(
-            this,
-            new CompassUpdaterTask(this, umhManager),
-            0,
-            1
+                this,
+                new CompassUpdaterTask(this, umhManager),
+                0,
+                1
         );
     }
 
