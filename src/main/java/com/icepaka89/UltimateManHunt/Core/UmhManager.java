@@ -50,6 +50,11 @@ public class UmhManager {
     private int countdownTime = 60;
 
     /**
+     * Boolean flag that's true if the countdown timer is running, false if not.
+     */
+    private boolean bIsCountdownTimerRunning = false;
+
+    /**
      * Creates a new Ultimate Manhunt plugin manager
      * @param plugin Handle to the UltimateManHunt plugin main class
      */
@@ -75,6 +80,10 @@ public class UmhManager {
     public void addSpeedRunner(Player p) {
         speedRunners.put(p.getName(), p);
     }
+
+    //
+    // SETTERS
+    //
 
     /**
      * Sets a percentage value, capped to the range [0,1], that all assassin player damage will be reduced by.
@@ -102,6 +111,26 @@ public class UmhManager {
      */
     public void setCountdownTime(int countdownTime) {
         this.countdownTime = countdownTime;
+    }
+
+    /**
+     * Sets countdown timer running flag
+     * @param bIsCountdownTimerRunning
+     */
+    public void setIsCountdownTimerRunning(boolean bIsCountdownTimerRunning) {
+        this.bIsCountdownTimerRunning = bIsCountdownTimerRunning;
+    }
+
+    //
+    // GETTERS
+    //
+
+    /**
+     * Returns true if the countdown timer is running, false if not
+     * @return
+     */
+    public boolean isCountdownTimerRunning() {
+        return bIsCountdownTimerRunning;
     }
 
     /**

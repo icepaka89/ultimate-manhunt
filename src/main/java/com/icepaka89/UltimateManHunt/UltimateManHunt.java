@@ -2,6 +2,7 @@ package com.icepaka89.UltimateManHunt;
 
 import com.icepaka89.UltimateManHunt.Commands.*;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
+import com.icepaka89.UltimateManHunt.EventListeners.FreezeAssassinEventListener;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -26,6 +27,11 @@ public final class UltimateManHunt extends JavaPlugin {
         UmhManager umhManager = new UmhManager(this);
 
         getLogger().info("UltimateManHunt plugin enabled!");
+
+        //
+        // COMMAND EXECUTORS
+        //
+
         getCommand("assassin").setExecutor(
                 new AssassinCommandExecutor(this, umhManager)
         );
@@ -50,11 +56,25 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("debuff-assassin").setExecutor(
                 new DebuffAssassinCommandExecutor(this, umhManager)
         );
+
+        //
+        // TASKS
+        //
+
         getServer().getScheduler().scheduleSyncRepeatingTask(
                 this,
                 new CompassUpdaterTask(this, umhManager),
                 0,
                 1
+        );
+
+        //
+        // EVENT LISTENERS
+        //
+
+        getServer().getPluginManager().registerEvents(
+                new FreezeAssassinEventListener(this, umhManager),
+                this
         );
     }
 

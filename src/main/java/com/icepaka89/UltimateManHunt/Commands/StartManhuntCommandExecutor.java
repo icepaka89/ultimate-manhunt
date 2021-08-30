@@ -70,13 +70,17 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
                 "Speedrunners start! Assassin must wait for %d seconds!", manager.getCountdownTime()
         ));
 
+        // TODO: Add another notification for when half time has elapsed?
+
         var countdownTimerTask = new BukkitRunnable() {
             @Override
             public void run() {
+                manager.setIsCountdownTimerRunning(false);
                 Bukkit.broadcastMessage(ChatColor.AQUA + "Assassins start! Good luck!");
             }
         };
 
+        manager.setIsCountdownTimerRunning(true);
         countdownTimerTask.runTaskLater(plugin, manager.getCountdownTime() * 20L);
 
         return true;
