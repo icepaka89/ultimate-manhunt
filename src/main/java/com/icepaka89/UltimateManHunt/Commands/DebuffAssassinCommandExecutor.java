@@ -45,7 +45,7 @@ public class DebuffAssassinCommandExecutor implements CommandExecutor {
                     Double.parseDouble(args[0])
             );
 
-            Bukkit.broadcastMessage(ChatColor.AQUA + String.format("Assassin debuff set to %s %%", args[0]));
+            Bukkit.broadcastMessage(ChatColor.AQUA + String.format("Assassin debuff set to %s %%", manager.getAssassinDeBuff() * 100));
 
             return true;
         }

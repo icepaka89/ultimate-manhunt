@@ -36,7 +36,7 @@ public class UmhManager {
     /**
      * Percentage value [0,1] that assassin's damage is reduced by
      */
-    private double assassinDeBuff;
+    private double assassinDeBuff = 1;
 
     /**
      * Starting distance between the assassin and speed runner groups when the game is started, in blocks
@@ -90,8 +90,9 @@ public class UmhManager {
      * @param assassinDeBuff
      */
     public void setAssassinDeBuff(double assassinDeBuff) {
-        double capped = Math.min(assassinDeBuff, 0);
-        capped = Math.max(assassinDeBuff, 1);
+        double capped = Math.min(assassinDeBuff, 1);
+
+        if(capped < 0) capped = 0;
 
         this.assassinDeBuff = capped;
     }
@@ -124,6 +125,13 @@ public class UmhManager {
     //
     // GETTERS
     //
+
+    /**
+     * Gets the percentage value, capped to the range [0,1], that all assassin player damage will be reduced by.
+     */
+    public double getAssassinDeBuff() {
+        return assassinDeBuff;
+    }
 
     /**
      * Returns true if the countdown timer is running, false if not
