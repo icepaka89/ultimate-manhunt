@@ -15,6 +15,9 @@ commands:
   manhunt-groups:
     description: List players in both groups
     usage: /<command>
+  reset-manhunt-groups:
+    description: Clears all manhunt groups
+    usage: /<command>
   starting-distance:
     description: Set starting distance (in blocks) assassins will start from speed runners
     usage: /<command> [distance]
@@ -27,4 +30,7 @@ commands:
   debuff-assassin:
     description: Sets the percentage to debuff all assassin attacks (between 0 and 1)
     usage: /<command> [debuff]
+  toggle-freeze-assassin:
+    description: Enable/Disable freezing the assassin if a speedrunner sees them
+    usage: /<command>
 

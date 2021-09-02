@@ -4,13 +4,22 @@
 
 The popular manhunt/assassin minecraft game mode, with some extra features!
 
+### To do
+* Enable/disable distance reporting, maybe use action bar for it instead of chat?
+* Option to spawn special sword with limited uses that freezes assasin for 60sec
+* Should have a timer to measure how long speedrunner survived
+* Make it so weather is always clear (toggle)
+* Command to save current time so you can pick up later
+
 ### Commands
 
 * `/assassin <player>` - Add a player to the assassins group
 * `/speedrunner <player>` - Add a player to the speedrunner group
 * `/manhunt-groups` - Display a list of players in each group
+* `/reset-manhunt-groups` - Clears all groups 
 * `/randomize-spawn` - Randomizes the spawn point
-* `/toggle-freeze-assassin` - Enable/Disable freezing the assassin if a speedrunner sees them  
+* `/toggle-freeze-assassin` - Enable/Disable freezing the assassin if a speedrunner sees them
+* `/toggle-distance-reporting` - Enable/Disable printing the distance from each assassin to the nearest speedrunner periodically  
 * `/starting-distance` - Sets the starting distance between the assassin and speedrunner
 * `/debuff-assassin <percentage>` - Debuffs assassins by reducing their damage by the given percentage
 * `/countdown-time` - Sets the length of the countdown timer when starting

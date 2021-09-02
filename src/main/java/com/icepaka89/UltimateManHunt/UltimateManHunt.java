@@ -4,6 +4,7 @@ import com.icepaka89.UltimateManHunt.Commands.*;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.EventListeners.AssassinDebuffEventListener;
 import com.icepaka89.UltimateManHunt.EventListeners.FreezeAssassinEventListener;
+import com.icepaka89.UltimateManHunt.Tasks.AssassinDistanceReporterTask;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -45,6 +46,9 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("manhunt-groups").setExecutor(
                 new ManhuntGroupsCommandExecutor(this, umhManager)
         );
+        getCommand("reset-manhunt-groups").setExecutor(
+                new ResetManhuntGroupsCommandExecutor(this, umhManager)
+        );
         getCommand("starting-distance").setExecutor(
                 new StartingDistanceCommandExecutor(this, umhManager)
         );
@@ -57,6 +61,9 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("debuff-assassin").setExecutor(
                 new DebuffAssassinCommandExecutor(this, umhManager)
         );
+        getCommand("toggle-freeze-assassin").setExecutor(
+                new ToggleFreezeAssassinCommandExecutor(this, umhManager)
+        );
 
         //
         // TASKS
@@ -67,6 +74,13 @@ public final class UltimateManHunt extends JavaPlugin {
                 new CompassUpdaterTask(this, umhManager),
                 0,
                 1
+        );
+
+        getServer().getScheduler().scheduleSyncRepeatingTask(
+                this,
+                new AssassinDistanceReporterTask(this, umhManager),
+                0,
+                30 * 20L
         );
 
         //

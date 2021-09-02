@@ -1,7 +1,10 @@
 package com.icepaka89.UltimateManHunt.EventListeners;
 
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
+import com.icepaka89.UltimateManHunt.Enum.ManhuntRole;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,14 +38,25 @@ public class FreezeAssassinEventListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
-        // If player trying to move is in the assassins group when the countdown timer is running, cancel the
-        // event to prevent them from moving.
+        // Ensure that the player being considered is an assassin. If not, just return.
+        if(manager.getPlayerRole(player) != ManhuntRole.ASSASSIN) return;
+
+        // If assassin tries to move when the countdown timer is running, cancel the event to prevent them
+        // from moving.
         if (
             manager.isCountdownTimerRunning()
-            && manager.getAssassins().stream().anyMatch(p -> p.getName() == player.getName())
         ) {
             plugin.getLogger().info(String.format("%s shouldn't be moving", player.getName()));
             event.setCancelled(true);
         }
+
+        // If the assassin is within line of sight of the nearest speedrunner, and freeze assassin is
+        // enabled, prevent them from moving.
+//        if(
+//            manager.checkLineOfSight(player, manager.getNearestSpeedRunner(player))
+//        ) {
+//            Bukkit.broadcastMessage(ChatColor.AQUA + String.format("%s is frozen!", player.getName()));
+//            event.setCancelled(true);
+//        }
     }
 }

@@ -1,12 +1,12 @@
 package com.icepaka89.UltimateManHunt.Core;
 
+import com.icepaka89.UltimateManHunt.Enum.ManhuntRole;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,6 +55,11 @@ public class UmhManager {
     private boolean bIsCountdownTimerRunning = false;
 
     /**
+     * Boolean flag that's true if assassin freeze on line of sight is enabled.
+     */
+    private boolean bFreezeAssassinEnabled = false;
+
+    /**
      * Creates a new Ultimate Manhunt plugin manager
      * @param plugin Handle to the UltimateManHunt plugin main class
      */
@@ -81,9 +86,75 @@ public class UmhManager {
         speedRunners.put(p.getName(), p);
     }
 
+    /**
+     * Returns the speed runner that's closest to the given assassin within the same world, or null if no
+     * such player exists.
+     * @param assassin The assassin player to get the closest speed runner for.
+     * @return
+     */
+    public Player getNearestSpeedRunner(Player assassin) {
+        Location location = assassin.getLocation();
+        Player closestSpeedRunner = getSpeedrunners().stream()
+                // Only consider players in the same world as the assassin, and don't consider the assassin
+                .filter(speedRunner ->
+                        !speedRunner.equals(assassin) && speedRunner.getWorld().equals(assassin.getWorld())
+                )
+                // Get the player that's closest to the speedrunner's current location
+                .min(
+                        Comparator.comparing(speedRunner -> speedRunner.getLocation().distance(location))
+                )
+                .orElse(null);
+
+        return closestSpeedRunner;
+    }
+
+    /**
+     * Returns **true** if the assassin is within line of sight of the speedRunner.
+     * @param assassin
+     * @param speedRunner
+     * @return
+     */
+    public boolean checkLineOfSight(Player assassin, Player speedRunner) {
+
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Gets the role of the given player, either assassin or speedrunner, or unassigned if they have no role.
+     * @param player
+     * @return
+     */
+    public ManhuntRole getPlayerRole(Player player) {
+        if(assassins.containsKey(player.getName())) {
+            return ManhuntRole.ASSASSIN;
+        }
+
+        if(speedRunners.containsKey(player.getName())) {
+            return ManhuntRole.SPEEDRUNNER;
+        }
+
+        return ManhuntRole.UNASSIGNED;
+    }
+
+    public void clearAssassins() {
+        this.assassins = new HashMap<>();
+    }
+
+    public void clearSpeedRunners() {
+        this.speedRunners = new HashMap<>();
+    }
+
     //
     // SETTERS
     //
+
+    /**
+     * Enables / disables assassin freeze on line of sight
+     * @param bFreezeAssassinEnabled
+     */
+    public void setFreezeAssassinEnabled(boolean bFreezeAssassinEnabled) {
+        this.bFreezeAssassinEnabled = bFreezeAssassinEnabled;
+    }
 
     /**
      * Sets a percentage value, capped to the range [0,1], that all assassin player damage will be reduced by.
@@ -125,6 +196,14 @@ public class UmhManager {
     //
     // GETTERS
     //
+
+    /**
+     * Returns true if assassin freeze on line of sight is enabled
+     * @return
+     */
+    public boolean isFreezeAssassinEnabled() {
+        return bFreezeAssassinEnabled;
+    }
 
     /**
      * Gets the percentage value, capped to the range [0,1], that all assassin player damage will be reduced by.

@@ -3,6 +3,7 @@ package com.icepaka89.UltimateManHunt.Tasks;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -47,32 +48,13 @@ public class CompassUpdaterTask implements Runnable {
         // Go through each player in the assassins group, and set each assassin's compass target
         // to the location of the closest speed runner.
         for(Player assassin : manager.getAssassins()) {
-            Player target = getNearestSpeedRunner(assassin);
+            Player target = manager.getNearestSpeedRunner(assassin);
             if(target != null) {
                 assassin.setCompassTarget(target.getLocation());
             }
         }
+
     }
 
-    /**
-     * Returns the speed runner that's closest to the given assassin within the same world, or null if no
-     * such player exists.
-     * @param assassin The assassin player to get the closest speed runner for.
-     * @return
-     */
-    private Player getNearestSpeedRunner(Player assassin) {
-        Location location = assassin.getLocation();
-        Player closestSpeedRunner = manager.getSpeedrunners().stream()
-            // Only consider players in the same world as the assassin, and don't consider the assassin
-            .filter(speedRunner ->
-                    !speedRunner.equals(assassin) && speedRunner.getWorld().equals(assassin.getWorld())
-            )
-            // Get the player that's closes to the speedrunner's current location
-            .min(
-                Comparator.comparing(speedRunner -> speedRunner.getLocation().distance(location))
-            )
-            .orElse(null);
 
-        return closestSpeedRunner;
-    }
 }

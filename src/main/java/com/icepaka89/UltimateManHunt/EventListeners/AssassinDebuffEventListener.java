@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
+ * Event handler that listens for
  * @author : Daniel Gomm
  * @since : 8/31/21, Tue
  */
@@ -39,7 +40,7 @@ public class AssassinDebuffEventListener implements Listener {
                 
                 event.setDamage(debuffedDmg);
 
-                Bukkit.broadcastMessage(String.format("Damage reduced from %f to %f!", dmg, debuffedDmg));
+//                Bukkit.broadcastMessage(String.format("Damage reduced from %f to %f!", dmg, debuffedDmg));
             }
         }
     }
