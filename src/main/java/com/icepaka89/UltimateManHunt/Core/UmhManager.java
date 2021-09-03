@@ -33,6 +33,18 @@ public class UmhManager {
      */
     private HashMap<String, Player> speedRunners;
 
+
+
+    /**
+     * Time the current game was started (the game starts when the countdown timer hits 0)
+     */
+    private Date manhuntStartTime = null;
+
+    /**
+     * Time the current manhunt was ended (the game ends when all speedrunners have been killed by an assassin)
+     */
+    private Date manhuntEndTime = null;
+
     /**
      * Percentage value [0,1] that assassin's damage is reduced by
      */
@@ -55,9 +67,21 @@ public class UmhManager {
     private boolean bIsCountdownTimerRunning = false;
 
     /**
+     * Boolean flag that's true if manhunt is currently going on. Manhunt starts when the countdown timer hits 0, and
+     * continues to be active until every speedrunner has been killed by an assassin.
+     */
+    private boolean bIsManhuntActive = false;
+
+    /**
      * Boolean flag that's true if assassin freeze on line of sight is enabled.
      */
     private boolean bFreezeAssassinEnabled = false;
+
+    /**
+     * Boolean flag that's true if the plugin show each speedrunner the distance to the nearest assassin, and
+     * each assassin the distance to the nearest speedrunner.
+     */
+    private boolean bDistanceReportingEnabled = true;
 
     /**
      * Creates a new Ultimate Manhunt plugin manager
@@ -84,6 +108,23 @@ public class UmhManager {
      */
     public void addSpeedRunner(Player p) {
         speedRunners.put(p.getName(), p);
+    }
+
+    /**
+     * Starts a new manhunt and records the start time
+     */
+    public void startManhunt() {
+        bIsManhuntActive = true;
+        manhuntStartTime = new Date();
+        manhuntEndTime = null;
+    }
+
+    /**
+     * Ends the current manhunt and records the end time
+     */
+    public void endManhunt() {
+        bIsManhuntActive = false;
+        manhuntEndTime = new Date();
     }
 
     /**
@@ -149,6 +190,14 @@ public class UmhManager {
     //
 
     /**
+     * Enables/disables showing each speedrunner the distance to the nearest assassin, and
+     * each assassin the distance to the nearest speedrunner.
+     */
+    public void setDistanceReportingEnabled(boolean bDistanceReportingEnabled) {
+        this.bDistanceReportingEnabled = bDistanceReportingEnabled;
+    }
+
+    /**
      * Enables / disables assassin freeze on line of sight
      * @param bFreezeAssassinEnabled
      */
@@ -196,6 +245,30 @@ public class UmhManager {
     //
     // GETTERS
     //
+
+    /**
+     * Gets the time the current manhunt was started
+     * @return
+     */
+    public Date getManhuntStartTime() {
+        return manhuntStartTime;
+    }
+
+    /**
+     * Gets the time the current manhunt ended
+     * @return
+     */
+    public Date getManhuntEndTime() {
+        return manhuntEndTime;
+    }
+
+    /**
+     * Returns true if the plugin show each speedrunner the distance to the nearest assassin, and
+     * each assassin the distance to the nearest speedrunner.
+     */
+    public boolean isDistanceReportingEnabled() {
+        return bDistanceReportingEnabled;
+    }
 
     /**
      * Returns true if assassin freeze on line of sight is enabled

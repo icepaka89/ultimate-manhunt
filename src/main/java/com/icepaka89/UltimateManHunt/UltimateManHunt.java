@@ -64,6 +64,9 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("toggle-freeze-assassin").setExecutor(
                 new ToggleFreezeAssassinCommandExecutor(this, umhManager)
         );
+        getCommand("toggle-distance-reporting").setExecutor(
+                new ToggleDistanceReportingCommandExecutor(this, umhManager)
+        );
 
         //
         // TASKS

@@ -76,6 +76,7 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
             @Override
             public void run() {
                 manager.setIsCountdownTimerRunning(false);
+                manager.startManhunt();
                 Bukkit.broadcastMessage(ChatColor.AQUA + "Assassins start! Good luck!");
             }
         };

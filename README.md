@@ -5,7 +5,7 @@
 The popular manhunt/assassin minecraft game mode, with some extra features!
 
 ### To do
-* Enable/disable distance reporting, maybe use action bar for it instead of chat?
+* Maybe use action bar for distance reporting?
 * Option to spawn special sword with limited uses that freezes assasin for 60sec
 * Should have a timer to measure how long speedrunner survived
 * Make it so weather is always clear (toggle)

@@ -33,4 +33,7 @@ commands:
   toggle-freeze-assassin:
     description: Enable/Disable freezing the assassin if a speedrunner sees them
     usage: /<command>
+  toggle-distance-reporting:
+    description: Enable/Disable reporting distance between assassins and speedrunners
+    usage: /<command>
 
