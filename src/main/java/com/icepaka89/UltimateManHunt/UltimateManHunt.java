@@ -4,6 +4,7 @@ import com.icepaka89.UltimateManHunt.Commands.*;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.EventListeners.AssassinDebuffEventListener;
 import com.icepaka89.UltimateManHunt.EventListeners.FreezeAssassinEventListener;
+import com.icepaka89.UltimateManHunt.EventListeners.PlayerKillEventListener;
 import com.icepaka89.UltimateManHunt.Tasks.AssassinDistanceReporterTask;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
 import org.bukkit.command.Command;
@@ -97,6 +98,11 @@ public final class UltimateManHunt extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(
                 new AssassinDebuffEventListener(this, umhManager),
+                this
+        );
+
+        getServer().getPluginManager().registerEvents(
+                new PlayerKillEventListener(this, umhManager),
                 this
         );
     }

@@ -31,7 +31,7 @@ public class AssassinDistanceReporterTask implements Runnable{
 
     @Override
     public void run() {
-        if(manager.isDistanceReportingEnabled()) {
+        if(manager.isManhuntActive() && manager.isDistanceReportingEnabled()) {
             for(Player assassin : manager.getAssassins()) {
                 // Get the speedrunner closes to the assassin
                 Player target = manager.getNearestSpeedRunner(assassin);

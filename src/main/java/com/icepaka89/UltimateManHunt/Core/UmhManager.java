@@ -33,8 +33,6 @@ public class UmhManager {
      */
     private HashMap<String, Player> speedRunners;
 
-
-
     /**
      * Time the current game was started (the game starts when the countdown timer hits 0)
      */
@@ -245,6 +243,15 @@ public class UmhManager {
     //
     // GETTERS
     //
+
+    /**
+     * Boolean flag that's true if manhunt is currently going on. Manhunt starts when the countdown timer hits 0, and
+     * continues to be active until every speedrunner has been killed by an assassin.
+     * @return
+     */
+    public boolean isManhuntActive() {
+        return bIsManhuntActive;
+    }
 
     /**
      * Gets the time the current manhunt was started

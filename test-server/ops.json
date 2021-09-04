@@ -6,6 +6,12 @@
     "bypassesPlayerLimit": false
   },
   {
+    "uuid": "b8d73787-acf5-3547-a432-5be46b22a414",
+    "name": "anotherGuy",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
     "uuid": "747cff63-4b86-3ed6-b3c5-2ebaeccbbb5b",
     "name": "Arksaw",
     "level": 4,
