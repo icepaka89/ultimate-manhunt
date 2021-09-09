@@ -6,11 +6,12 @@ The popular manhunt/assassin minecraft game mode, with some extra features!
 
 ### To do
 * Maybe use action bar for distance reporting?
-* Option to spawn special sword with limited uses that freezes assasin for 60sec
-* Auto spawn compass when added to assassins group
 * Report if assassin can see speedrunner?
 * Make it so weather is always clear (toggle)
 * Command to save current time so you can pick up later
+* Make it so player can only be part of one group
+* Fix PlayerMoveEvent errors in FreezeAssassinEventListener
+* Improve randomize-spawn command
 
 ### Commands
 
