@@ -1,0 +1,320 @@
+---- Minecraft Crash Report ----
+// But it works on my machine.
+
+Time: 9/7/21, 9:26 AM
+Description: Watching Server
+
+java.lang.Error: Watchdog
+	at java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:173)
+	at java.base@14.0.1/java.lang.Runtime.exit(Runtime.java:114)
+	at java.base@14.0.1/java.lang.System.exit(System.java:1783)
+	at app//net.minecraft.server.v1_16_R3.DedicatedServer.exit(DedicatedServer.java:337)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:858)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:156)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer$$Lambda$3343/0x0000000801317040.run(Unknown Source)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server Watchdog
+Stacktrace:
+	at java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:173)
+	at java.base@14.0.1/java.lang.Runtime.exit(Runtime.java:114)
+	at java.base@14.0.1/java.lang.System.exit(System.java:1783)
+	at app//net.minecraft.server.v1_16_R3.DedicatedServer.exit(DedicatedServer.java:337)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:858)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:156)
+
+-- Thread Dump --
+Details:
+	Threads: "Reference Handler" daemon prio=10 Id=2 RUNNABLE
+	at java.base@14.0.1/java.lang.ref.Reference.waitForReferencePendingList(Native Method)
+	at java.base@14.0.1/java.lang.ref.Reference.processPendingReferences(Reference.java:241)
+	at java.base@14.0.1/java.lang.ref.Reference$ReferenceHandler.run(Reference.java:213)
+
+
+"Finalizer" daemon prio=8 Id=3 WAITING on java.lang.ref.ReferenceQueue$Lock@74cbac4a
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@74cbac4a
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)
+	at java.base@14.0.1/java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:170)
+
+
+"Signal Dispatcher" daemon prio=9 Id=4 RUNNABLE
+
+
+"Notification Thread" daemon prio=9 Id=19 RUNNABLE
+
+
+"Common-Cleaner" daemon prio=8 Id=20 TIMED_WAITING on java.lang.ref.ReferenceQueue$Lock@7a0c4ca3
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@7a0c4ca3
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+	at java.base@14.0.1/jdk.internal.ref.CleanerImpl.run(CleanerImpl.java:148)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+	at java.base@14.0.1/jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:134)
+
+
+"Worker-Bootstrap-1" daemon prio=5 Id=25 WAITING on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+
+
+"Worker-Bootstrap-2" daemon prio=5 Id=26 WAITING on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+
+
+"Worker-Bootstrap-3" daemon prio=5 Id=28 WAITING on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+
+
+"Worker-Bootstrap-5" daemon prio=5 Id=29 TIMED_WAITING on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.parkUntil(LockSupport.java:293)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1624)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+
+
+"Worker-Bootstrap-6" daemon prio=5 Id=30 WAITING on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.ForkJoinPool@7e33c73a
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)
+
+
+"Timer hack thread" daemon prio=5 Id=32 TIMED_WAITING
+	at java.base@14.0.1/java.lang.Thread.sleep(Native Method)
+	at app//net.minecraft.server.v1_16_R3.SystemUtils$6.run(SourceFile:636)
+
+
+"Snooper Timer" daemon prio=5 Id=41 WAITING on java.util.TaskQueue@3b314698
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on java.util.TaskQueue@3b314698
+	at java.base@14.0.1/java.lang.Object.wait(Object.java:321)
+	at java.base@14.0.1/java.util.TimerThread.mainLoop(Timer.java:527)
+	at java.base@14.0.1/java.util.TimerThread.run(Timer.java:506)
+
+
+"AppKit Thread" daemon prio=5 Id=44 RUNNABLE (in native)
+
+
+"Java2D Queue Flusher" daemon prio=10 Id=46 TIMED_WAITING on sun.java2d.opengl.OGLRenderQueue$QueueFlusher@12311448
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on sun.java2d.opengl.OGLRenderQueue$QueueFlusher@12311448
+	at java.desktop@14.0.1/sun.java2d.opengl.OGLRenderQueue$QueueFlusher.run(OGLRenderQueue.java:205)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"Java2D Disposer" daemon prio=10 Id=47 WAITING on java.lang.ref.ReferenceQueue$Lock@a403bf9
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@a403bf9
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176)
+	at java.desktop@14.0.1/sun.java2d.Disposer.run(Disposer.java:144)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"TimerQueue" daemon prio=5 Id=50 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@5b1eb9d7
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@5b1eb9d7
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614)
+	at java.base@14.0.1/java.util.concurrent.DelayQueue.take(DelayQueue.java:217)
+	at java.desktop@14.0.1/javax.swing.TimerQueue.run(TimerQueue.java:171)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+	Number of locked synchronizers = 1
+	- java.util.concurrent.locks.ReentrantLock$NonfairSync@6aaa379c
+
+
+"Thread-2" daemon prio=5 Id=49 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@419765a8
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@419765a8
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614)
+	at java.base@14.0.1/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435)
+	at app//com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77)
+	at app//net.minecraft.server.v1_16_R3.ServerGUI.lambda$3(ServerGUI.java:136)
+	...
+
+
+"Server thread" prio=5 Id=40 BLOCKED on java.lang.Class@7bb11784 owned by "SIGINT handler" Id=62
+	at java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:173)
+	-  blocked on java.lang.Class@7bb11784
+	at java.base@14.0.1/java.lang.Runtime.exit(Runtime.java:114)
+	at java.base@14.0.1/java.lang.System.exit(System.java:1783)
+	at app//net.minecraft.server.v1_16_R3.DedicatedServer.exit(DedicatedServer.java:337)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:858)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:156)
+	at app//net.minecraft.server.v1_16_R3.MinecraftServer$$Lambda$3343/0x0000000801317040.run(Unknown Source)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"DestroyJavaVM" prio=5 Id=52 RUNNABLE
+
+
+"TerminalConsoleWriter" daemon prio=5 Id=53 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@4a831190
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@4a831190
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137)
+	at java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614)
+	at java.base@14.0.1/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435)
+	at app//com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77)
+	at app//org.bukkit.craftbukkit.v1_16_R3.util.TerminalConsoleWriterThread.run(TerminalConsoleWriterThread.java:31)
+
+
+"Server console handler" daemon prio=5 Id=51 RUNNABLE (in native)
+	at java.base@14.0.1/java.io.FileInputStream.readBytes(Native Method)
+	at java.base@14.0.1/java.io.FileInputStream.read(FileInputStream.java:272)
+	at java.base@14.0.1/java.io.BufferedInputStream.fill(BufferedInputStream.java:244)
+	at java.base@14.0.1/java.io.BufferedInputStream.read(BufferedInputStream.java:263)
+	-  locked java.io.BufferedInputStream@71aed98b
+	at app//org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream.read(NonBlockingInputStream.java:248)
+	at app//org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:261)
+	-  locked org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream@5f500668
+	at app//org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:198)
+	-  locked org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream@5f500668
+	at app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readCharacter(ConsoleReader.java:2145)
+	...
+
+
+"ObjectCleanerThread" daemon prio=1 Id=54 TIMED_WAITING on java.lang.ref.ReferenceQueue$Lock@2590920f
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@2590920f
+	at java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+	at app//io.netty.util.internal.ObjectCleaner$1.run(ObjectCleaner.java:54)
+	at app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"Netty Server IO #0" daemon prio=5 Id=55 RUNNABLE (in native)
+	at java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method)
+	at java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122)
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
+	-  locked sun.nio.ch.Util$2@77cd08bc
+	-  locked sun.nio.ch.KQueueSelectorImpl@70a8e54f
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141)
+	at app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)
+	at app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411)
+	at app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"Server Watchdog" daemon prio=5 Id=59 RUNNABLE
+	at java.management@14.0.1/sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at java.management@14.0.1/sun.management.ThreadImpl.dumpAllThreads(ThreadImpl.java:521)
+	at java.management@14.0.1/sun.management.ThreadImpl.dumpAllThreads(ThreadImpl.java:509)
+	at app//net.minecraft.server.v1_16_R3.ThreadWatchdog.run(SourceFile:49)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"Netty Server IO #1" daemon prio=5 Id=60 RUNNABLE (in native)
+	at java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method)
+	at java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122)
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
+	-  locked sun.nio.ch.Util$2@2f14ce74
+	-  locked sun.nio.ch.KQueueSelectorImpl@eb53173
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141)
+	at app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)
+	at app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411)
+	at app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"Netty Server IO #2" daemon prio=5 Id=61 RUNNABLE (in native)
+	at java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method)
+	at java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122)
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
+	-  locked sun.nio.ch.Util$2@112250f1
+	-  locked sun.nio.ch.KQueueSelectorImpl@26974d07
+	at java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141)
+	at app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756)
+	at app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411)
+	at app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+	at java.base@14.0.1/java.lang.Thread.run(Thread.java:832)
+
+
+"SIGINT handler" daemon prio=9 Id=62 WAITING on org.bukkit.craftbukkit.v1_16_R3.util.ServerShutdownThread@6630e32d
+	at java.base@14.0.1/java.lang.Object.wait(Native Method)
+	-  waiting on org.bukkit.craftbukkit.v1_16_R3.util.ServerShutdownThread@6630e32d
+	at java.base@14.0.1/java.lang.Thread.join(Thread.java:1303)
+	at java.base@14.0.1/java.lang.Thread.join(Thread.java:1371)
+	at java.base@14.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107)
+	at java.base@14.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46)
+	at java.base@14.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130)
+	at java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:174)
+	-  locked java.lang.Class@7bb11784
+	at java.base@14.0.1/java.lang.Terminator$1.handle(Terminator.java:51)
+	...
+
+
+"Thread-1" prio=5 Id=43 WAITING on java.util.concurrent.CompletableFuture$Signaller@2ff940cf
+	at java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.CompletableFuture$Signaller@2ff940cf
+	at java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)
+	at java.base@14.0.1/java.util.concurrent.CompletableFuture$Signaller.block(CompletableFuture.java:1860)
+	at java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137)
+	at java.base@14.0.1/java.util.concurrent.CompletableFuture.waitingGet(CompletableFuture.java:1887)
+	at java.base@14.0.1/java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2107)
+	at app//net.minecraft.server.v1_16_R3.IChunkLoader.i(IChunkLoader.java:101)
+	at app//net.minecraft.server.v1_16_R3.PlayerChunkMap.save(PlayerChunkMap.java:329)
+	...
+
+
+
+Stacktrace:
+	at net.minecraft.server.v1_16_R3.ThreadWatchdog.run(SourceFile:65)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+-- Performance stats --
+Details:
+	Random tick rate: 3
+	Level stats: ResourceKey[minecraft:dimension / minecraft:overworld]: players: 0, entities: 308 [minecraft:chicken:42,minecraft:item:41,minecraft:sheep:30,minecraft:pig:29,minecraft:zombie:26], block_entities: 17 [minecraft:mob_spawner:11,minecraft:chest:6], block_ticks: 8772, fluid_ticks: 18, chunk_source: ServerChunkCache: 2025,
+ResourceKey[minecraft:dimension / minecraft:the_nether]: players: 0, entities: 38 [minecraft:piglin:21,minecraft:strider:9,minecraft:piglin_brute:8], block_entities: 12 [minecraft:chest:11,minecraft:mob_spawner:1], block_ticks: 0, fluid_ticks: 696, chunk_source: ServerChunkCache: 2025,
+ResourceKey[minecraft:dimension / minecraft:the_end]: players: 0, entities: 10 [minecraft:end_crystal:10], block_entities: 0 [], block_ticks: 10, fluid_ticks: 0, chunk_source: ServerChunkCache: 2025
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16.5
+	Minecraft Version ID: 1.16.5
+	Operating System: Mac OS X (x86_64) version 10.16
+	Java Version: 14.0.1, Oracle Corporation
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 1498339328 bytes (1428 MB) / 2563768320 bytes (2445 MB) up to 6442450944 bytes (6144 MB)
+	CPUs: 16
+	JVM Flags: 0 total; 
+	CraftBukkit Information: 
+   Running: CraftBukkit version 3020-Bukkit-ee5006d (MC: 1.16.5) (Implementing API version 1.16.5-R0.1-SNAPSHOT) false
+   Plugins: { UltimateManHunt v1.0.0* com.icepaka89.UltimateManHunt.UltimateManHunt [icepaka89],}
+   Warnings: DEFAULT
+   Reload Count: 0
+   Threads: { RUNNABLE Server Watchdog: [java.base@14.0.1/java.lang.Thread.dumpThreads(Native Method), java.base@14.0.1/java.lang.Thread.getAllStackTraces(Thread.java:1649), app//org.bukkit.craftbukkit.v1_16_R3.CraftCrashReport.call(CraftCrashReport.java:33), app//net.minecraft.server.v1_16_R3.CrashReportSystemDetails.a(SourceFile:79), app//net.minecraft.server.v1_16_R3.CrashReport.i(CrashReport.java:71), app//net.minecraft.server.v1_16_R3.CrashReport.<init>(CrashReport.java:35), app//net.minecraft.server.v1_16_R3.ThreadWatchdog.run(SourceFile:63), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE DestroyJavaVM: [], WAITING Thread-2: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505), java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614), java.base@14.0.1/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435), app//com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77), app//net.minecraft.server.v1_16_R3.ServerGUI.lambda$3(ServerGUI.java:136), app//net.minecraft.server.v1_16_R3.ServerGUI$$Lambda$3454/0x0000000801385c40.run(Unknown Source), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], TIMED_WAITING Common-Cleaner: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155), java.base@14.0.1/jdk.internal.ref.CleanerImpl.run(CleanerImpl.java:148), java.base@14.0.1/java.lang.Thread.run(Thread.java:832), java.base@14.0.1/jdk.internal.misc.InnocuousThread.run(InnocuousThread.java:134)], WAITING Worker-Bootstrap-6: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211), java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633), java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)], RUNNABLE Netty Server IO #1: [java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method), java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122), java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129), java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141), app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756), app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411), app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE Netty Server IO #2: [java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method), java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122), java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129), java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141), app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756), app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411), app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE AppKit Thread: [], TIMED_WAITING Timer hack thread: [java.base@14.0.1/java.lang.Thread.sleep(Native Method), app//net.minecraft.server.v1_16_R3.SystemUtils$6.run(SourceFile:636)], TIMED_WAITING ObjectCleanerThread: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155), app//io.netty.util.internal.ObjectCleaner$1.run(ObjectCleaner.java:54), app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE Signal Dispatcher: [], WAITING Thread-1: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211), java.base@14.0.1/java.util.concurrent.CompletableFuture$Signaller.block(CompletableFuture.java:1860), java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137), java.base@14.0.1/java.util.concurrent.CompletableFuture.waitingGet(CompletableFuture.java:1887), java.base@14.0.1/java.util.concurrent.CompletableFuture.join(CompletableFuture.java:2107), app//net.minecraft.server.v1_16_R3.IChunkLoader.i(IChunkLoader.java:101), app//net.minecraft.server.v1_16_R3.PlayerChunkMap.save(PlayerChunkMap.java:329), app//net.minecraft.server.v1_16_R3.ChunkProviderServer.save(ChunkProviderServer.java:315), app//net.minecraft.server.v1_16_R3.ChunkProviderServer.close(ChunkProviderServer.java:326), app//net.minecraft.server.v1_16_R3.ChunkProviderServer.close(ChunkProviderServer.java:321), app//net.minecraft.server.v1_16_R3.World.close(World.java:843), app//net.minecraft.server.v1_16_R3.MinecraftServer.stop(MinecraftServer.java:741), app//net.minecraft.server.v1_16_R3.DedicatedServer.stop(DedicatedServer.java:635), app//net.minecraft.server.v1_16_R3.MinecraftServer.close(MinecraftServer.java:685), app//org.bukkit.craftbukkit.v1_16_R3.util.ServerShutdownThread.run(ServerShutdownThread.java:15)], WAITING Finalizer: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176), java.base@14.0.1/java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:170)], WAITING Snooper Timer: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.Object.wait(Object.java:321), java.base@14.0.1/java.util.TimerThread.mainLoop(Timer.java:527), java.base@14.0.1/java.util.TimerThread.run(Timer.java:506)], WAITING TimerQueue: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505), java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614), java.base@14.0.1/java.util.concurrent.DelayQueue.take(DelayQueue.java:217), java.desktop@14.0.1/javax.swing.TimerQueue.run(TimerQueue.java:171), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], TIMED_WAITING Java2D Queue Flusher: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.desktop@14.0.1/sun.java2d.opengl.OGLRenderQueue$QueueFlusher.run(OGLRenderQueue.java:205), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], WAITING SIGINT handler: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.Thread.join(Thread.java:1303), java.base@14.0.1/java.lang.Thread.join(Thread.java:1371), java.base@14.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107), java.base@14.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46), java.base@14.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130), java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:174), java.base@14.0.1/java.lang.Terminator$1.handle(Terminator.java:51), java.base@14.0.1/jdk.internal.misc.Signal$1.run(Signal.java:220), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], WAITING Java2D Disposer: [java.base@14.0.1/java.lang.Object.wait(Native Method), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155), java.base@14.0.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:176), java.desktop@14.0.1/sun.java2d.Disposer.run(Disposer.java:144), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE Netty Server IO #0: [java.base@14.0.1/sun.nio.ch.KQueue.poll(Native Method), java.base@14.0.1/sun.nio.ch.KQueueSelectorImpl.doSelect(KQueueSelectorImpl.java:122), java.base@14.0.1/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129), java.base@14.0.1/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:141), app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:756), app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:411), app//io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], WAITING Worker-Bootstrap-3: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211), java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633), java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)], WAITING Worker-Bootstrap-2: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211), java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633), java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)], RUNNABLE Notification Thread: [], RUNNABLE Server console handler: [java.base@14.0.1/java.io.FileInputStream.readBytes(Native Method), java.base@14.0.1/java.io.FileInputStream.read(FileInputStream.java:272), java.base@14.0.1/java.io.BufferedInputStream.fill(BufferedInputStream.java:244), java.base@14.0.1/java.io.BufferedInputStream.read(BufferedInputStream.java:263), app//org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream.read(NonBlockingInputStream.java:248), app//org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:261), app//org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:198), app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readCharacter(ConsoleReader.java:2145), app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLineSimple(ConsoleReader.java:3183), app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2333), app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2269), app//org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2257), app//net.minecraft.server.v1_16_R3.DedicatedServer$1.run(DedicatedServer.java:82)], BLOCKED Server thread: [java.base@14.0.1/java.lang.Shutdown.exit(Shutdown.java:173), java.base@14.0.1/java.lang.Runtime.exit(Runtime.java:114), java.base@14.0.1/java.lang.System.exit(System.java:1783), app//net.minecraft.server.v1_16_R3.DedicatedServer.exit(DedicatedServer.java:337), app//net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:858), app//net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:156), app//net.minecraft.server.v1_16_R3.MinecraftServer$$Lambda$3343/0x0000000801317040.run(Unknown Source), java.base@14.0.1/java.lang.Thread.run(Thread.java:832)], RUNNABLE Reference Handler: [java.base@14.0.1/java.lang.ref.Reference.waitForReferencePendingList(Native Method), java.base@14.0.1/java.lang.ref.Reference.processPendingReferences(Reference.java:241), java.base@14.0.1/java.lang.ref.Reference$ReferenceHandler.run(Reference.java:213)], WAITING Worker-Bootstrap-1: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:211), java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1633), java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)], TIMED_WAITING Worker-Bootstrap-5: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.parkUntil(LockSupport.java:293), java.base@14.0.1/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1624), java.base@14.0.1/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:177)], WAITING TerminalConsoleWriter: [java.base@14.0.1/jdk.internal.misc.Unsafe.park(Native Method), java.base@14.0.1/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:505), java.base@14.0.1/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3137), java.base@14.0.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1614), java.base@14.0.1/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435), app//com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77), app//org.bukkit.craftbukkit.v1_16_R3.util.TerminalConsoleWriterThread.run(TerminalConsoleWriterThread.java:31)],}
+   Recent tasks from 1530-1560{}
+   Force Loaded Chunks: { world: {}, world_nether: {}, world_the_end: {},}
+	Player Count: 0 / 20; []
+	Data Packs: vanilla, file/bukkit
+	Is Modded: Definitely; Server brand changed to 'CraftBukkit'
+	Type: Dedicated Server (map_server.txt)

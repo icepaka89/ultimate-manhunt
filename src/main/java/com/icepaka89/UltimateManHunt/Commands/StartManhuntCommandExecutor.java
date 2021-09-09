@@ -5,11 +5,18 @@ import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Implementation of the /start-manhunt command. Teleports all players to their starting positions! Currently this
@@ -48,7 +55,7 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
         var spawnLocation = new Location(
                 world,
                 world.getSpawnLocation().getX(),
-                world.getSpawnLocation().getY(),
+                world.getSpawnLocation().getY() + 1,
                 world.getSpawnLocation().getZ()
         );
         var assassinStartLocation = world.getSpawnLocation().add(
@@ -56,14 +63,36 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
                 0,
                 0
         );
-        assassinStartLocation.setY(world.getHighestBlockYAt(assassinStartLocation));
+        assassinStartLocation.setY(world.getHighestBlockYAt(assassinStartLocation) + 1);
 
         manager.getSpeedrunners().forEach(p -> {
             p.teleport(spawnLocation);
+            p.getInventory().clear();
+
+            // If assassin freeze is enabled, give the speedrunner a diamond sword
+            // with a special name. This sword can freeze assassin it hits for a
+            // few seconds.
+            if(manager.isFreezeAssassinEnabled()) {
+                ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+                var swordMeta = sword.getItemMeta();
+                swordMeta.setDisplayName("Ultimate Manhunt Freeze Sword");
+                swordMeta.setLore(Arrays.asList("Uses: 2", "Freezes assassin for 15 seconds when used!"));
+                sword.setItemMeta(swordMeta);
+
+                p.getInventory().addItem(sword);
+            }
         });
 
         manager.getAssassins().forEach(p -> {
             p.teleport(assassinStartLocation);
+            p.getInventory().clear();
+
+            // Give new assassin a special compass
+            ItemStack compass = new ItemStack(Material.COMPASS);
+            var compassMeta = compass.getItemMeta();
+            compassMeta.setDisplayName("Ultimate Manhunt Compass");
+            compass.setItemMeta(compassMeta);
+            p.getInventory().addItem(compass);
         });
 
         Bukkit.broadcastMessage(ChatColor.AQUA + String.format(

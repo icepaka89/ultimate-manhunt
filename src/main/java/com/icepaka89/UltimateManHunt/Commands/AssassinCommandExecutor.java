@@ -4,10 +4,13 @@ import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Implementation of the /assassin command, adds the player name specified in the first argument to
@@ -70,10 +73,6 @@ public class AssassinCommandExecutor implements CommandExecutor {
         );
 
         Bukkit.broadcastMessage(ChatColor.AQUA + String.format("%s has been added to assassins", playerName));
-
-//        // Notify issuer of command that the player was added
-//        Player issuer = (Player) commandSender;
-//        issuer.sendMessage(String.format("%s has been added to assassins", playerName));
 
         // Return true to indicate the command ran successfully.
         return true;
