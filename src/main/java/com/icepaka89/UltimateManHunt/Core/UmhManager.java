@@ -97,6 +97,10 @@ public class UmhManager {
      * @param p
      */
     public void addAssassin(Player p) {
+        // If the player is already a speedrunner, remove them from that group
+        if(speedRunners.containsKey(p.getName())) {
+            speedRunners.remove(p.getName());
+        }
         assassins.put(p.getName(), p);
     }
 
@@ -105,6 +109,9 @@ public class UmhManager {
      * @param p
      */
     public void addSpeedRunner(Player p) {
+        if(assassins.containsKey(p.getName())) {
+            assassins.remove(p.getName());
+        }
         speedRunners.put(p.getName(), p);
     }
 
