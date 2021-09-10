@@ -9,7 +9,6 @@ The popular manhunt/assassin minecraft game mode, with some extra features!
 * Report if assassin can see speedrunner?
 * Make it so weather is always clear (toggle)
 * Command to save current time so you can pick up later
-* Make it so player can only be part of one group
 * Improve randomize-spawn command
 
 ### Commands
