@@ -10,7 +10,6 @@ The popular manhunt/assassin minecraft game mode, with some extra features!
 * Make it so weather is always clear (toggle)
 * Command to save current time so you can pick up later
 * Make it so player can only be part of one group
-* Fix PlayerMoveEvent errors in FreezeAssassinEventListener
 * Improve randomize-spawn command
 
 ### Commands

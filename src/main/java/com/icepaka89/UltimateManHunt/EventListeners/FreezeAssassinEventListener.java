@@ -57,6 +57,8 @@ public class FreezeAssassinEventListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
+        if(player == null || player.getName() == null || frozenAssassins == null) return;
+
         // Ensure that the player being considered is an assassin. If not, just return.
         if(manager.getPlayerRole(player) != ManhuntRole.ASSASSIN) return;
 
@@ -64,7 +66,7 @@ public class FreezeAssassinEventListener implements Listener {
         // from moving.
         if (
             manager.isCountdownTimerRunning()
-            || frozenAssassins.get(player.getName())
+            || frozenAssassins.containsKey(player.getName())
         ) {
             plugin.getLogger().info(String.format("%s shouldn't be moving", player.getName()));
             event.setCancelled(true);
