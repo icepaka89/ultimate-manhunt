@@ -17,8 +17,9 @@ import org.bukkit.command.CommandSender;
  * @author icepaka89
  */
 public class RandomizeSpawnCommandExecutor implements CommandExecutor {
-    public static int MAX_RANDOM_HOPS = 150;
-    public static int SPAWN_HOP_RADIUS = 100000;
+    public static int MAX_POINTS_PER_HOP = 500;
+    public static int MAX_RANDOM_HOPS = 250;
+    public static int SPAWN_HOP_RADIUS = 10000;
 
     /**
      * Reference to the <b>UltimateManHunt</b> plugin main class.
@@ -44,8 +45,6 @@ public class RandomizeSpawnCommandExecutor implements CommandExecutor {
         boolean bSpawnSetSuccessfully = world.setSpawnLocation(
                 getRandomSpawnLocation(world)
         );
-
-
 
         // If spawn was set successfully, then notify players, set their bed spawn points to the new world spawn,
         // and teleport everyone to the new spawn.
@@ -74,28 +73,51 @@ public class RandomizeSpawnCommandExecutor implements CommandExecutor {
     }
 
     /**
-     * Gets the nearest random block within a 150,000 block radius that isn't in the ocean.
+     * Gets the nearest random block within <i>SPAWN_HOP_RADIUS</i> that isn't in the ocean.
+     *
+     * The current API's don't have a method for finding the nearest biome of a specific type, so it's being
+     * done here as a loop with limited retry attempts.
      * @param world
      * @return
      */
     private Location getRandomSpawnLocation(World world) {
+        /**
+         * Stores each random spawn location generated
+         */
         var currentSpawnLoc = world.getSpawnLocation();
 
-        // The current API's don't have a method for finding the nearest biome of a specific type, so it's being
-        // done here as a loop with limited retry attempts.
+        /**
+         * The center of the radius being checked for points in the current hop
+         */
+        var spawnRadiusCenter = currentSpawnLoc;
+
+        // Loop once for each random hop. The loop will keep hopping in the positive x,z direction to a new
+        // area each time, until a point on land is found
         int randX = 0, randZ = 0, randY = 0;
         for(int i = 0; i < MAX_RANDOM_HOPS; i++) {
-            // Generates a new random spawn point within 1000 blocks of currentSpawnLoc
-            randX = (int) (Math.random() * SPAWN_HOP_RADIUS) + currentSpawnLoc.getBlockX();
-            randZ = (int) (Math.random() * SPAWN_HOP_RADIUS) + currentSpawnLoc.getBlockZ();
-            randY = world.getHighestBlockYAt(randX, randZ);
+            // Hop to a new circular area with new points that haven't been checked yet
+            spawnRadiusCenter = spawnRadiusCenter.add(
+                i*SPAWN_HOP_RADIUS*2,
+                0,
+                i*SPAWN_HOP_RADIUS*2
+            );
 
-            // Set currentSpawnLoc to the new random location
-            currentSpawnLoc = new Location(world, randX, randY, randZ);
+            // For each random hop, try a max number of random points before moving on
+            for(int j = 0; j < MAX_POINTS_PER_HOP; j++) {
+                // Generates a new random spawn point within SPAWN_HOP_RADIUS of spawnRadiusCenter
+                randX = (int) (Math.random() * SPAWN_HOP_RADIUS) + spawnRadiusCenter.getBlockX();
+                randZ = (int) (Math.random() * SPAWN_HOP_RADIUS) + spawnRadiusCenter.getBlockZ();
+                randY = world.getHighestBlockYAt(randX, randZ) + 2;
 
-            if(world.getBiome(randX, randZ) != Biome.OCEAN) break;
+                // Set currentSpawnLoc to the new random location
+                currentSpawnLoc = new Location(world, randX, randY, randZ);
+
+                // If the new random location isn't in the middle of the ocean, then return it
+                if (world.getBiome(randX, randZ) != Biome.OCEAN) return currentSpawnLoc;;
+            }
         }
 
+        // Return the last generated spawn location if no points on land are found
         return currentSpawnLoc;
     }
 
