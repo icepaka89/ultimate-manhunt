@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -55,7 +56,7 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
         var spawnLocation = new Location(
                 world,
                 world.getSpawnLocation().getX(),
-                world.getSpawnLocation().getY() + 1,
+                world.getHighestBlockYAt(world.getSpawnLocation()) + 1,
                 world.getSpawnLocation().getZ()
         );
         var assassinStartLocation = world.getSpawnLocation().add(
@@ -68,6 +69,8 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
         manager.getSpeedrunners().forEach(p -> {
             p.teleport(spawnLocation);
             p.getInventory().clear();
+            p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+            p.setFoodLevel(20);
 
             // If assassin freeze is enabled, give the speedrunner a diamond sword
             // with a special name. This sword can freeze assassin it hits for a
@@ -86,6 +89,8 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
         manager.getAssassins().forEach(p -> {
             p.teleport(assassinStartLocation);
             p.getInventory().clear();
+            p.setHealth(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
+            p.setFoodLevel(20);
 
             // Give new assassin a special compass
             ItemStack compass = new ItemStack(Material.COMPASS);

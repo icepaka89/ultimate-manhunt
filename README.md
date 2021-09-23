@@ -11,7 +11,6 @@ TODO:
 * Command to save current time so you can pick up later
 * Improve randomize-spawn command
 
-** Reset Health and food every time manhunt starts
 ** Ability to stop manhunt
 ** When assassin dies during manhunt, give them the compass again
 ** BUG: If assassin leaves the game then comes back, the compass is broken until they're re-added to assassins group
