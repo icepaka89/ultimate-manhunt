@@ -7,10 +7,16 @@ The popular manhunt/assassin minecraft game mode, with some extra features!
 <!-- 
 TODO:
 * Maybe use action bar for distance reporting?
-* Report if assassin can see speedrunner?
 * Make it so weather is always clear (toggle)
 * Command to save current time so you can pick up later
 * Improve randomize-spawn command
+
+** Reset Health and food every time manhunt starts
+** Ability to stop manhunt
+** When assassin dies during manhunt, give them the compass again
+** BUG: If assassin leaves the game then comes back, the compass is broken until they're re-added to assassins group
+** Add 1/2 time, 1/4 time, and 10sec warnings to countdown
+** Add optional game timer?
 -->
 
 ### Commands
@@ -36,7 +42,7 @@ test-server/
 
 The `src/` folder contains java source files for the plugin.
 
-The `test-server/` folder contains a test bukkit server that IntelliJ has been configured to deploy to and start in the default run configuration.
+The `test-server/` folder contains a test bukkit server that IntelliJ can be configured to deploy to and start in the default run configuration.
 
 ### Setting Up A Development Environment
 

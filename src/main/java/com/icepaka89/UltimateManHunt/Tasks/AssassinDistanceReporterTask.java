@@ -50,15 +50,17 @@ public class AssassinDistanceReporterTask implements Runnable{
                         + distance
                         + " blocks away from you"
                 );
-                assassin.sendMessage(ChatColor.AQUA
-                        + "The nearest speedrunner, "
-                        + ChatColor.GREEN
-                        + target.getName()
-                        + ChatColor.AQUA
-                        + ", is "
-                        + distance
-                        + " blocks away from you"
-                );
+
+                // Commented this out, the assassin probably shouldn't know how far away the speed runner is
+//                assassin.sendMessage(ChatColor.AQUA
+//                        + "The nearest speedrunner, "
+//                        + ChatColor.GREEN
+//                        + target.getName()
+//                        + ChatColor.AQUA
+//                        + ", is "
+//                        + distance
+//                        + " blocks away from you"
+//                );
             }
         }
     }

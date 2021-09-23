@@ -66,7 +66,10 @@ public class FreezeAssassinEventListener implements Listener {
         // from moving.
         if (
             manager.isCountdownTimerRunning()
-            || frozenAssassins.containsKey(player.getName())
+            || (
+                    frozenAssassins.containsKey(player.getName())
+                    && frozenAssassins.get(player.getName()) == true
+            )
         ) {
             plugin.getLogger().info(String.format("%s shouldn't be moving", player.getName()));
             event.setCancelled(true);
@@ -136,6 +139,7 @@ public class FreezeAssassinEventListener implements Listener {
                 @Override
                 public void run() {
                     frozenAssassins.put(victim.getName(), false);
+
                     Bukkit.broadcastMessage(ChatColor.RED + victim.getName() + ChatColor.AQUA + " is unfrozen!");
                 }
             };
