@@ -2,11 +2,10 @@ package com.icepaka89.UltimateManHunt;
 
 import com.icepaka89.UltimateManHunt.Commands.*;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
-import com.icepaka89.UltimateManHunt.EventListeners.AssassinDebuffEventListener;
-import com.icepaka89.UltimateManHunt.EventListeners.FreezeAssassinEventListener;
-import com.icepaka89.UltimateManHunt.EventListeners.PlayerKillEventListener;
+import com.icepaka89.UltimateManHunt.EventListeners.*;
 import com.icepaka89.UltimateManHunt.Tasks.AssassinDistanceReporterTask;
 import com.icepaka89.UltimateManHunt.Tasks.CompassUpdaterTask;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,8 +27,6 @@ public final class UltimateManHunt extends JavaPlugin {
     @Override
     public void onEnable() {
         UmhManager umhManager = new UmhManager(this);
-
-        getLogger().info("UltimateManHunt plugin enabled!");
 
         //
         // COMMAND EXECUTORS
@@ -68,6 +65,9 @@ public final class UltimateManHunt extends JavaPlugin {
         getCommand("toggle-distance-reporting").setExecutor(
                 new ToggleDistanceReportingCommandExecutor(this, umhManager)
         );
+        getCommand("quit-manhunt").setExecutor(
+                new QuitManhuntCommandExecutor(this, umhManager)
+        );
 
         //
         // TASKS
@@ -102,8 +102,32 @@ public final class UltimateManHunt extends JavaPlugin {
         );
 
         getServer().getPluginManager().registerEvents(
-                new PlayerKillEventListener(this, umhManager),
+                new PlayerDeathEventListener(this, umhManager),
                 this
+        );
+
+        getServer().getPluginManager().registerEvents(
+                new PlayerRespawnEventListener(this, umhManager),
+                this
+        );
+
+        getServer().getPluginManager().registerEvents(
+                new PlayerQuitEventListener(this, umhManager),
+                this
+        );
+
+        //
+        // BANNER MESSAGE
+        //
+
+        getLogger().info(
+                "\n" +
+                " __ __/ / /_(_)_ _  ___ _/ /____     \n" +
+                "/ // / / __/ /  ' \\/ _ `/ __/ -_)    \n" +
+                "\\_,_/_/\\__/_/_/_/_/\\_,_/\\__/\\__/  __ \n" +
+                "  __ _  ___ ____  / /  __ _____  / /_\n" +
+                " /  ' \\/ _ `/ _ \\/ _ \\/ // / _ \\/ __/\n" +
+                "/_/_/_/\\_,_/_//_/_//_/\\_,_/_//_/\\__/ "
         );
     }
 

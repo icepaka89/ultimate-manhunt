@@ -1,5 +1,6 @@
 package com.icepaka89.UltimateManHunt.Commands;
 
+import com.icepaka89.UltimateManHunt.Core.UmhItemFactory;
 import com.icepaka89.UltimateManHunt.Core.UmhManager;
 import com.icepaka89.UltimateManHunt.UltimateManHunt;
 import org.bukkit.Bukkit;
@@ -16,7 +17,9 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.Duration;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,12 +79,7 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
             // with a special name. This sword can freeze assassin it hits for a
             // few seconds.
             if(manager.isFreezeAssassinEnabled()) {
-                ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
-                var swordMeta = sword.getItemMeta();
-                swordMeta.setDisplayName("Ultimate Manhunt Freeze Sword");
-                swordMeta.setLore(Arrays.asList("Uses: 2", "Freezes assassin for 15 seconds when used!"));
-                sword.setItemMeta(swordMeta);
-
+                var sword = UmhItemFactory.getSpeedRunnerFreezeSword();
                 p.getInventory().addItem(sword);
             }
         });
@@ -93,10 +91,7 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
             p.setFoodLevel(20);
 
             // Give new assassin a special compass
-            ItemStack compass = new ItemStack(Material.COMPASS);
-            var compassMeta = compass.getItemMeta();
-            compassMeta.setDisplayName("Ultimate Manhunt Compass");
-            compass.setItemMeta(compassMeta);
+            var compass = UmhItemFactory.getAssassinCompass();
             p.getInventory().addItem(compass);
         });
 
@@ -104,19 +99,45 @@ public class StartManhuntCommandExecutor implements CommandExecutor {
                 "Speedrunners start! Assassin must wait for %d seconds!", manager.getCountdownTime()
         ));
 
-        // TODO: Add another notification for when half time has elapsed?
+        manager.setIsCountdownTimerRunning(true);
 
-        var countdownTimerTask = new BukkitRunnable() {
+        // Notify half-time
+        new BukkitRunnable() {
             @Override
             public void run() {
+                if(!manager.isCountdownTimerRunning()) return;
+
+                Bukkit.broadcastMessage(
+                        ChatColor.AQUA
+                        + String.format("%d seconds left!", manager.getCountdownTime() / 2)
+                );
+            }
+        }.runTaskLater(plugin, (manager.getCountdownTime()/2) * 20L );
+
+        // Notify quarter-time
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(!manager.isCountdownTimerRunning()) return;
+
+                Bukkit.broadcastMessage(
+                        ChatColor.AQUA
+                        + String.format("%d seconds left!", manager.getCountdownTime() / 4)
+                );
+            }
+        }.runTaskLater(plugin, (manager.getCountdownTime() - (manager.getCountdownTime()/4)) * 20L);
+
+        // Notify when countdown timer is finished and start manhunt
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(!manager.isCountdownTimerRunning()) return;
+
                 manager.setIsCountdownTimerRunning(false);
                 manager.startManhunt();
                 Bukkit.broadcastMessage(ChatColor.AQUA + "Assassins start! Good luck!");
             }
-        };
-
-        manager.setIsCountdownTimerRunning(true);
-        countdownTimerTask.runTaskLater(plugin, manager.getCountdownTime() * 20L);
+        }.runTaskLater(plugin, manager.getCountdownTime() * 20L);
 
         return true;
     }

@@ -7,14 +7,9 @@ The popular manhunt/assassin minecraft game mode, with some extra features!
 <!-- 
 TODO:
 * Maybe use action bar for distance reporting?
-* Make it so weather is always clear (toggle)
 * Command to save current time so you can pick up later
 * Improve randomize-spawn command
-
 ** Ability to stop manhunt
-** When assassin dies during manhunt, give them the compass again
-** BUG: If assassin leaves the game then comes back, the compass is broken until they're re-added to assassins group
-** Add 1/2 time, 1/4 time, and 10sec warnings to countdown
 ** Add optional game timer?
 -->
 

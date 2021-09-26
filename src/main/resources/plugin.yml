@@ -36,4 +36,7 @@ commands:
   toggle-distance-reporting:
     description: Enable/Disable reporting distance between assassins and speedrunners
     usage: /<command>
+  quit-manhunt:
+    description: Stop the current manhunt and clears all groups
+    usage: /<command>
 

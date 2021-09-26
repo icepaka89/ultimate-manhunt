@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -20,7 +19,7 @@ import java.util.Date;
  * @author : Daniel Gomm
  * @since : 9/3/21, Fri
  */
-public class PlayerKillEventListener implements Listener {
+public class PlayerDeathEventListener implements Listener {
 
     /**
      * Reference to the <b>UltimateManHunt</b> plugin main class.
@@ -32,35 +31,38 @@ public class PlayerKillEventListener implements Listener {
      */
     private final UmhManager manager;
 
-    public PlayerKillEventListener(UltimateManHunt plugin, UmhManager manager) {
+    public PlayerDeathEventListener(UltimateManHunt plugin, UmhManager manager) {
         this.plugin = plugin;
         this.manager = manager;
     }
 
     @EventHandler
-    public void onPlayerKill(PlayerDeathEvent event) {
+    public void onPlayerDeath(PlayerDeathEvent event) {
         // Don't listen for deaths unless a manhunt is currently going on
         if(! manager.isManhuntActive()) return;
 
-        var speedRunner = event.getEntity();
-        var assassin = speedRunner.getKiller();
+        var deadPlayer = event.getEntity();
+        var killer = deadPlayer.getKiller();
 
-        plugin.getLogger().info(speedRunner.getName() + " was killed by " + assassin.getName());
+//        plugin.getLogger().info(deadPlayer.getName() + " was killed by " + killer.getName());
+
+        // If it was an assassin who killed a speed runner, print the time that speed runner stayed alive
         if (
-            manager.getPlayerRole(speedRunner) == ManhuntRole.SPEEDRUNNER
-            && manager.getPlayerRole(assassin) == ManhuntRole.ASSASSIN
+            manager.getPlayerRole(deadPlayer) == ManhuntRole.SPEEDRUNNER
+            && manager.getPlayerRole(killer) == ManhuntRole.ASSASSIN
         ) {
+            // Print the duration that the speedrunner lasted for!
             var now = new Date().toInstant();
             var start = manager.getManhuntStartTime().toInstant();
             var duration = Duration.between(start, now);
 
             Bukkit.broadcastMessage(
                     ChatColor.RED
-                    + assassin.getName()
+                    + killer.getName()
                     + ChatColor.AQUA
                     + " has killed "
                     + ChatColor.GREEN
-                    + speedRunner.getName()
+                    + deadPlayer.getName()
                     + ChatColor.AQUA
                     + "! They lasted for "
                     + duration.toHoursPart()
@@ -69,6 +71,28 @@ public class PlayerKillEventListener implements Listener {
                     + "m"
                     + duration.toSecondsPart()
                     + "s"
+            );
+
+            // Remove the dead speed runner from the game, since they've been killed by an assassin
+            manager.removeSpeedRunner(deadPlayer);
+
+            // If no speed runners left, then end the manhunt and print  that assassins have won
+            if(manager.getSpeedrunners().size() == 0) {
+                Bukkit.broadcastMessage(
+                        ChatColor.RED
+                        + "Assassins"
+                        + ChatColor.AQUA
+                        + " have won the manhunt!"
+                );
+                manager.endManhunt();
+            }
+        }
+
+        // Special message for Jesse if he gets wrecked lmao
+        if(deadPlayer.getName().equals("Arksaw")) {
+            Bukkit.broadcastMessage(
+                    ChatColor.BOLD
+                    + "Wow, Jesse you really suck at this game! Maybe Dan Gomm needs to give you some lessons ;)"
             );
         }
     }

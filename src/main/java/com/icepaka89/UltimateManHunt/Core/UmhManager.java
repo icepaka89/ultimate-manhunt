@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 /**
  * Manages all core logic for the ultimate manhunt plugin. This includes managing lists of all
  * players in each role (and their plugin-related metadata), storing player-configurable settings
- * for the plugin,
+ * for the plugin, and updating the state of the game.
+ *
  * @author icepaka89
  */
 public class UmhManager {
@@ -71,9 +72,9 @@ public class UmhManager {
     private boolean bIsManhuntActive = false;
 
     /**
-     * Boolean flag that's true if assassin freeze on line of sight is enabled.
+     * Boolean flag that's true if the assassin freeze sword for speed runners is enabled.
      */
-    private boolean bFreezeAssassinEnabled = false;
+    private boolean bFreezeAssassinEnabled = true;
 
     /**
      * Boolean flag that's true if the plugin show each speedrunner the distance to the nearest assassin, and
@@ -105,6 +106,14 @@ public class UmhManager {
     }
 
     /**
+     * Removes the player from the assassins group
+     * @param p
+     */
+    public void removeAssassin(Player p) {
+        assassins.remove(p.getName());
+    }
+
+    /**
      * Adds the player to the speed runners group.
      * @param p
      */
@@ -113,6 +122,14 @@ public class UmhManager {
             assassins.remove(p.getName());
         }
         speedRunners.put(p.getName(), p);
+    }
+
+    /**
+     * Removes the player from the speedRunners group
+     * @param p
+     */
+    public void removeSpeedRunner(Player p) {
+        speedRunners.remove(p.getName());
     }
 
     /**
@@ -129,6 +146,7 @@ public class UmhManager {
      */
     public void endManhunt() {
         bIsManhuntActive = false;
+        bIsCountdownTimerRunning = false;
         manhuntEndTime = new Date();
     }
 
@@ -171,6 +189,8 @@ public class UmhManager {
      * @return
      */
     public ManhuntRole getPlayerRole(Player player) {
+        if(player == null) return ManhuntRole.UNASSIGNED;
+
         if(assassins.containsKey(player.getName())) {
             return ManhuntRole.ASSASSIN;
         }
