@@ -1,5 +1,8 @@
 # Ultimate Manhunt Plugin
 *Version 1.0*
+
+*For CraftBukkit servers running Minecraft 1.16.4 or higher*
+
 ### Overview
 
 The popular manhunt/assassin minecraft game mode, with some extra features!
@@ -9,23 +12,23 @@ TODO:
 * Maybe use action bar for distance reporting?
 * Command to save current time so you can pick up later
 * Improve randomize-spawn command
-** Ability to stop manhunt
 ** Add optional game timer?
 -->
 
 ### Commands
 
 * `/assassin <player>` - Add a player to the assassins group
-* `/speedrunner <player>` - Add a player to the speedrunner group
+* `/speedrunner <player>` - Add a player to the speed runners group
 * `/manhunt-groups` - Display a list of players in each group
 * `/reset-manhunt-groups` - Clears all groups 
 * `/randomize-spawn` - Randomizes the spawn point
-* `/toggle-freeze-assassin` - Enable/Disable freezing the assassin if a speedrunner sees them
-* `/toggle-distance-reporting` - Enable/Disable printing the distance from each assassin to the nearest speedrunner periodically  
-* `/starting-distance` - Sets the starting distance between the assassin and speedrunner
-* `/debuff-assassin <percentage>` - Debuffs assassins by reducing their damage by the given percentage
+* `/toggle-freeze-assassin` - Enable/Disable giving speed runners an assassin freeze sword (Default is **true**)
+* `/toggle-distance-reporting` - Enable/Disable printing the distance from each assassin to the nearest speedrunner periodically (Default is **true)  
+* `/starting-distance` - Sets the starting distance between the assassin and speed runner
+* `/debuff-assassin <percentage>` - De-buffs assassins by reducing their damage by the given percentage
 * `/countdown-time` - Sets the length of the countdown timer when starting
 * `/start-manhunt` - Starts game, begins the countdown timer
+* `/quit-manhunt` - Stops the current manhunt and clears both groups
 
 ### Project Directory Structure
 
